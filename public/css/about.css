@@ -1,0 +1,1297 @@
+/* ===========================
+   RESET
+   =========================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  background: #fff;
+}
+
+/* ===========================
+   BOOK WRAPPER
+   =========================== */
+.book-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 80px 0;
+}
+
+/* ===========================
+   BOOK
+   =========================== */
+.book {
+  perspective: 300vw; /* 🔑 MORE DEPTH */
+  display: flex;
+  justify-content: center;
+}
+
+/* ===========================
+   PAGES CONTAINER
+   =========================== */
+.pages {
+  position: relative;
+  width: 70vw;          /* 🔑 WIDER BOOK */
+  height: 48vw;
+  max-width: 1000px;
+  transform-style: preserve-3d;
+  overflow: hidden;     /* 🔒 HARD STOP */
+  box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+  border-radius: 10px;
+}
+
+/* ===========================
+   PAGE
+   =========================== */
+.page {
+  position: absolute;
+  top: 0;
+  width: 34vw;          /* 🔑 SLIGHTLY LESS THAN HALF */
+  height: 48vw;
+  max-width: 500px;
+  background: #faf8f6 url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+  border-radius: 10px;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  transition: transform 1.1s ease;
+  overflow: hidden;
+}
+
+/* ===========================
+   PAGE POSITIONING
+   =========================== */
+.page:nth-child(odd) {
+  right: 0;
+  transform-origin: left;
+}
+
+.page:nth-child(even) {
+  left: 0;
+  transform-origin: right;
+  transform: rotateY(180deg);
+}
+
+/* ===========================
+   FLIP STATES
+   =========================== */
+.page.flipped:nth-child(odd) {
+  transform: rotateY(-180deg);
+  z-index: 0;
+}
+
+.page.flipped:nth-child(even) {
+  transform: rotateY(0deg);
+  z-index: 0;
+}
+
+.page:not(.flipped) {
+  z-index: 3;
+}
+
+/* ===========================
+   INNER CONTENT LOCK
+   =========================== */
+.book-page {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.overlay {
+  height: 100%;
+  padding: 16px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ===========================
+   TEXT
+   =========================== */
+.story-text {
+  font-family: 'Lovers Quarrel', cursive;
+  font-size: 26px;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* ===========================
+   COVER
+   =========================== */
+#green {
+  background-image: url("/images/logo.jpg");
+  background-size: cover;
+  background-position: center;
+  border: 10px solid gold;
+}
+
+#green .text {
+  font-family: 'Lovers Quarrel', cursive;
+  font-size: 96px;
+  color: gold;
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* ===========================
+   BACK COVER
+   =========================== */
+.page.back-cover {
+  background: linear-gradient(135deg, #FFD700, #FF8C00);
+  border: 8px solid #FFD700;
+}
+
+/* ===========================
+   TABLET
+   =========================== */
+@media (max-width: 1024px) {
+  .pages {
+    width: 85vw;
+    height: 60vw;
+  }
+
+  .page {
+    width: 40vw;
+    height: 60vw;
+  }
+
+  .story-text {
+    font-size: 22px;
+  }
+}
+
+/* ===========================
+   MOBILE (FIXED)
+   =========================== */
+@media (max-width: 600px) {
+  .pages {
+    width: 110vw;        /* 🔥 EXTRA SPACE FOR FLIP */
+    height: 85vh;
+  }
+
+  .page {
+    width: 52vw;         /* 🔥 LESS THAN HALF */
+    height: 85vh;
+  }
+
+  .story-text {
+    font-size: 20px;
+    line-height: 1.55;
+  }
+
+  #green .text {
+    font-size: 48px;
+  }
+}
+
+
+/* ===========================
+   READABILITY FIX (NO DESIGN CHANGE)
+   =========================== */
+
+/* Story text – same font, bigger & clearer */
+.story-text {
+  font-family: 'Lovers Quarrel', cursive !important;
+  font-weight: 700;
+  color: #000;
+}
+
+/* Section titles inside book */
+.page .section-title {
+  font-family: 'Lovers Quarrel', cursive !important;
+  color: rgb(202, 174, 11);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+}
+
+/* ---------- TABLET ---------- */
+@media (max-width: 1024px) {
+  .story-text {
+    font-size: 26px;     /* ⬆️ clearer */
+    line-height: 1.65;
+  }
+
+  .page .section-title {
+    font-size: 38px;
+  }
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 600px) {
+  .story-text {
+    font-size: 24px;     /* ⬆️ very readable */
+    line-height: 1.7;
+  }
+
+  .page .section-title {
+    font-size: 34px;
+  }
+
+  #green .text {
+    font-size: 60px;     /* cover title clearer */
+  }
+}
+
+
+/* ===========================
+   BOOK — FINAL LOCKED FIX
+   (DOES NOT TOUCH OTHER SECTIONS)
+   =========================== */
+
+.pages {
+  max-width: none !important;
+}
+
+/* DESKTOP — EXACTLY AS BEFORE */
+@media (min-width: 1025px) {
+  .pages {
+    width: 60vw;
+    height: 44vw;
+  }
+
+  .page {
+    width: 30vw;
+    height: 44vw;
+  }
+
+  .pages .story-text {
+    font-size: 26px;
+    line-height: 1.6;
+  }
+
+  .pages .section-title {
+    font-size: 43px;
+  }
+}
+
+/* TABLET */
+@media (max-width: 1024px) {
+  .pages {
+    width: 85vw;
+    height: 60vw;
+  }
+
+  .page {
+    width: 42.5vw;
+    height: 60vw;
+  }
+
+  .pages .story-text {
+    font-size: 24px;
+    line-height: 1.6;
+  }
+
+  .pages .section-title {
+    font-size: 36px;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .pages {
+    width: 110vw;        /* EXTRA SPACE FOR FLIP */
+    height: 85vh;
+  }
+
+  .page {
+    width: 52vw;
+    height: 85vh;
+  }
+
+  .book-page {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .overlay {
+    height: 100%;
+    overflow-y: auto;
+    padding: 14px;
+  }
+
+  .pages .story-text {
+    font-size: 22px;
+    line-height: 1.65;
+  }
+
+  .pages .section-title {
+    font-size: 32px;
+  }
+
+  #green .text {
+    font-size: 60px;
+  }
+}
+
+/* ===========================
+   FINAL FORCE FIX (TAILWIND OVERRIDE)
+   =========================== */
+
+.about-book {
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+/* BOOK CONTAINER */
+.about-book .pages {
+  width: 60vw !important;
+  height: 44vw !important;
+}
+
+/* BOOK PAGES */
+.about-book .page {
+  width: 30vw !important;
+  height: 44vw !important;
+}
+
+/* TEXT — DESKTOP (AS BEFORE) */
+@media (min-width: 1025px) {
+  .about-book .story-text {
+    font-size: 26px !important;
+    line-height: 1.6 !important;
+  }
+
+  .about-book .section-title {
+    font-size: 43px !important;
+  }
+}
+
+/* TABLET */
+@media (max-width: 1024px) {
+  .about-book .pages {
+    width: 85vw !important;
+    height: 60vw !important;
+  }
+
+  .about-book .page {
+    width: 42.5vw !important;
+    height: 60vw !important;
+  }
+
+  .about-book .story-text {
+    font-size: 24px !important;
+  }
+}
+
+/* MOBILE — FORCE CHANGE */
+@media (max-width: 600px) {
+  .about-book .pages {
+    width: 110vw !important;
+    height: 85vh !important;
+  }
+
+  .about-book .page {
+    width: 52vw !important;
+    height: 85vh !important;
+  }
+
+  .about-book .overlay {
+    height: 100% !important;
+    overflow-y: auto !important;
+  }
+
+  .about-book .story-text {
+    font-size: 22px !important;
+    line-height: 1.65 !important;
+  }
+
+  .about-book .section-title {
+    font-size: 32px !important;
+  }
+
+  .about-book #green .text {
+    font-size: 60px !important;
+  }
+}
+
+
+/* ===========================
+   LAPTOP BOOK — PERFECT FIT
+   =========================== */
+@media (min-width: 1025px) {
+
+  /* lock page size (as before) */
+  .pages {
+    width: 60vw;
+    height: 44vw;
+  }
+
+  .page {
+    width: 30vw;
+    height: 44vw;
+  }
+
+  /* remove scroll on laptop */
+  .page .overlay {
+    overflow-y: hidden;   /* ❌ no scroll */
+    padding: 14px;        /* 🔽 reduced padding */
+  }
+
+  /* heading inside page */
+  .page .section-title {
+    font-size: 40px;      /* 🔽 slightly smaller */
+    margin-bottom: 10px;
+  }
+
+  /* main story text */
+  .page .story-text {
+    font-size: 24px;      /* 🔽 fits exactly */
+    line-height: 1.55;    /* 🔽 tighter */
+  }
+}
+
+/* ===========================
+   LAPTOP BOOK — TEXT SIZE FIX
+   =========================== */
+@media (min-width: 1025px) {
+
+  /* Prevent scroll on laptop */
+  .page .overlay {
+    overflow-y: hidden;
+  }
+
+  /* Increase heading size slightly */
+  .page .section-title {
+    font-size: 46px;      /* ⬆ increased */
+    margin-bottom: 12px;
+  }
+
+  /* Increase story text size */
+  .page .story-text {
+    font-size: 100px;      /* ⬆ increased */
+    line-height: 1.6;     /* balanced so it still fits */
+  }
+}
+
+/* ===========================
+   LAPTOP — FORCE TEXT SIZE
+   =========================== */
+@media screen and (min-width: 1025px) {
+
+  .pages .overlay .story-text {
+    font-size: 30px !important;   /* 🔥 FORCED */
+    line-height: 1.6 !important;
+  }
+
+  .pages .overlay .section-title {
+    font-size: 48px !important;   /* 🔥 FORCED */
+    margin-bottom: 14px !important;
+  }
+}
+
+/* ===========================
+   COVER TITLE VISIBILITY FIX
+   =========================== */
+#green .text {
+  color: #FFD700; /* same gold */
+  text-shadow:
+    2px 2px 4px rgba(0, 0, 0, 0.8),
+    0 0 8px rgba(0, 0, 0, 0.6),
+    0 0 12px rgba(255, 215, 0, 0.6);
+}
+
+
+
+body {
+  font-family: "Segoe UI", sans-serif;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2ecc71;
+}
+
+/* Mission Section Background with Animated Diagonal Gradient + Glow */
+.mission-section {
+  background: linear-gradient(135deg, #2ecc71, #ffffff);
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+  transition: background 0.6s ease;
+  position: relative;
+}
+.mission-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(46, 204, 113, 0.3),
+    transparent 70%
+  );
+  z-index: 0;
+}
+.mission-section > * {
+  position: relative;
+  z-index: 1;
+}
+.mission-section:hover {
+  background: linear-gradient(135deg, #2ecc71 70%, #ffffff 30%);
+}
+
+/* Vision Section Background with Animated Diagonal Gradient + Glow */
+.vision-section {
+  background: linear-gradient(135deg, #ffffff, #2ecc71);
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+  transition: background 0.6s ease;
+  position: relative;
+}
+.vision-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(46, 204, 113, 0.3),
+    transparent 70%
+  );
+  z-index: 0;
+}
+.vision-section > * {
+  position: relative;
+  z-index: 1;
+}
+.vision-section:hover {
+  background: linear-gradient(135deg, #ffffff 30%, #2ecc71 70%);
+}
+
+/* Gradient Animation Keyframes */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Glass Overlay Effect for Text with Glow */
+.glass-overlay {
+  background: rgba(255, 255, 255, 0.2); /* semi-transparent layer */
+  backdrop-filter: blur(8px); /* blur background behind text */
+  padding: 2rem;
+  border-radius: 12px;
+  border: 2px solid rgba(46, 204, 113, 0.6); /* subtle green border */
+  animation: glowBorder 3s ease-in-out infinite alternate;
+}
+
+/* Glowing border animation */
+@keyframes glowBorder {
+  from {
+    box-shadow: 0 0 10px rgba(46, 204, 113, 0.6);
+  }
+  to {
+    box-shadow: 0 0 20px rgba(46, 204, 113, 1);
+  }
+}
+
+/* Video Styling */
+.mission-video {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* Image Styling */
+.vision-img {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* Hover Zoom Effect */
+.hover-zoom {
+  transition: transform 0.5s ease, filter 0.5s;
+}
+.hover-zoom:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* Section background gradient + glow */
+.core-values-section {
+  background: linear-gradient(135deg, #f0fff4, #ffffff);
+  position: relative;
+}
+.core-values-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(46, 204, 113, 0.15),
+    transparent 70%
+  );
+  z-index: 0;
+}
+.core-values-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Fade-in animation for cards */
+.value-card {
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s ease forwards;
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
+  perspective: 1000px;
+  overflow: hidden;
+}
+.value-card:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.value-card:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.value-card:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.value-card:nth-child(4) {
+  animation-delay: 0.8s;
+}
+.value-card:nth-child(5) {
+  animation-delay: 1s;
+}
+.value-card:nth-child(6) {
+  animation-delay: 1.2s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Soft glow behind each card */
+.card-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(46, 204, 113, 0.2),
+    transparent 70%
+  );
+  z-index: -1;
+  transition: opacity 0.6s ease;
+}
+.value-card:hover .card-glow {
+  opacity: 1;
+}
+
+/* Glowing border + tilt effect on hover */
+.value-card:hover {
+  border: 2px solid rgba(46, 204, 113, 0.6);
+  box-shadow: 0 0 20px rgba(46, 204, 113, 0.8),
+    0 8px 20px rgba(0, 0, 0, 0.2);
+  transform: rotateY(6deg) rotateX(3deg) scale(1.05);
+}
+
+/* Floating animation for icons */
+.icon-float {
+  animation: floatIcon 3s ease-in-out infinite;
+}
+
+@keyframes floatIcon {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Ripple hover effect on icons */
+.icon-ripple {
+  position: relative;
+  z-index: 1;
+}
+.icon-ripple::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(46, 204, 113, 0.4);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: width 0.6s ease, height 0.6s ease, opacity 0.6s ease;
+}
+.icon-ripple:hover::after {
+  width: 120%;
+  height: 120%;
+  opacity: 1;
+}
+
+/* Parallax stagger effect */
+.value-card:nth-child(odd) {
+  transform: translateY(20px);
+}
+.value-card:nth-child(even) {
+  transform: translateY(-20px);
+}
+.core-values-section:hover .value-card:nth-child(odd) {
+  transform: translateY(0) rotateY(6deg) rotateX(3deg) scale(1.05);
+}
+.core-values-section:hover .value-card:nth-child(even) {
+  transform: translateY(0) rotateY(-6deg) rotateX(-3deg) scale(1.05);
+}
+
+/* Smooth scroll parallax (extra premium) */
+@media (prefers-reduced-motion: no-preference) {
+  .value-card {
+    transition: transform 0.6s ease, box-shadow 0.6s ease;
+  }
+  .core-values-section {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ===========================
+   BOOK HEADING VISIBILITY FIX
+   =========================== */
+
+/* COVER TITLE ONLY */
+#green .text {
+  color: #FFD700;
+  text-shadow:
+    2px 2px 4px rgba(0,0,0,0.9),
+    0 0 8px rgba(0,0,0,0.6),
+    0 0 14px rgba(255,215,0,0.7);
+}
+
+/* INNER BOOK PAGE HEADINGS */
+.pages .section-title {
+  color: #5a4a00 !important;          /* dark gold / brown */
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.4) !important;
+  font-family: 'Lovers Quarrel', cursive !important;
+}
+
+/* LAPTOP ONLY — PERFECT READABILITY */
+@media (min-width: 1025px) {
+  .pages .section-title {
+    font-size: 44px;
+  }
+}
+
+/* MOBILE / TABLET */
+@media (max-width: 1024px) {
+  .pages .section-title {
+    font-size: 34px;
+  }
+}
+
+/* ===========================
+   BOOK GOLD HEADINGS (CLEAN)
+   =========================== */
+
+/* COVER TITLE — STAYS RICH GOLD */
+#green .text {
+  color: #FFD700;
+  text-shadow:
+    2px 2px 4px rgba(0,0,0,0.9),
+    0 0 10px rgba(255,215,0,0.9),
+    0 0 18px rgba(255,165,0,0.8);
+}
+
+/* INNER BOOK PAGE HEADINGS — READABLE GOLD */
+.pages .section-title {
+  font-family: 'Lovers Quarrel', cursive !important;
+  color: #F5C542 !important;   /* 🔑 SOFT, CLEAR GOLD */
+  text-shadow:
+    2px 2px 3px rgba(0,0,0,0.6); /* contrast without darkness */
+}
+
+/* ===========================
+   MOBILE READABILITY BOOST
+   =========================== */
+@media (max-width: 600px) {
+
+  /* Story text inside book */
+  .pages .story-text {
+    font-size: 24px;       /* increased from ~18–20 */
+    line-height: 1.7;
+  }
+
+  /* Headings inside book pages */
+  .pages .section-title {
+    font-size: 36px;       /* bigger & readable */
+  }
+
+  /* Padding so text breathes */
+  .pages .overlay {
+    padding: 18px;
+  }
+}
+
+/* ===========================
+   MOBILE – EXTRA READABLE MODE
+   =========================== */
+@media (max-width: 600px) {
+
+  /* Main story text */
+  .pages .story-text {
+    font-size: 28px;       /* BIG & comfy */
+    line-height: 1.8;
+  }
+
+  /* Page headings */
+  .pages .section-title {
+    font-size: 42px;       /* strong but elegant */
+  }
+
+  /* Inner spacing */
+  .pages .overlay {
+    padding: 20px;
+  }
+}
+
+
+/* ===========================
+   REMOVE EXTRA SPACE AROUND BOOK
+   =========================== */
+
+/* Laptop + all screens */
+.book {
+  margin: 0 !important;
+}
+
+/* Reduce section padding that wraps the book */
+section[data-aos="fade-up"] {
+  padding-top: 10px !important;
+  padding-bottom: 40px !important;
+}
+
+/* Mobile – even tighter */
+@media (max-width: 600px) {
+  section[data-aos="fade-up"] {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+  }
+}
+
+
+/* ===============================
+   FIX TELUGU TEXT OVERFLOW (BOOK)
+   LAPTOP / DESKTOP ONLY
+   =============================== */
+@media (min-width: 1024px) {
+  body.te .about-book .story-text {
+    font-size: 0.95rem;      /* slightly smaller */
+    line-height: 1.7;        /* more breathing space */
+    word-break: break-word; 
+    overflow-wrap: break-word;
+  }
+
+  body.te .about-book .book-page {
+    overflow: hidden;        /* stop text going out */
+  }
+}
+
+/* =========================================
+   TELUGU BOOK TEXT FIX – LAPTOP ONLY
+   ========================================= */
+@media (min-width: 1024px) {
+
+  /* Reduce font + improve spacing for Telugu */
+  body.te .about-book .story-text {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Fix page height & prevent overflow */
+  body.te .about-book .book-page {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  /* Allow scrolling INSIDE the page */
+  body.te .about-book .overlay {
+    max-height: 100%;
+    overflow-y: auto;
+    padding-right: 8px;
+  }
+
+  /* Hide ugly scrollbar (optional but nice) */
+  body.te .about-book .overlay::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  body.te .about-book .overlay::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 10px;
+  }
+}
+
+/* =========================================
+   BOOK TEXT & HEADING SIZE REFINEMENT
+   ========================================= */
+
+/* Headings inside book */
+.about-book .section-title {
+  font-size: 1.2rem;     /* was bigger */
+  margin-bottom: 8px;   /* reduce gap */
+}
+
+/* Story text */
+.about-book .story-text {
+  font-size: 0.95rem;   /* slightly smaller */
+  line-height: 1.7;     /* tighter but readable */
+  margin: 0;            /* remove extra space */
+}
+
+
+/* Remove extra padding & gaps */
+.about-book .overlay {
+  padding: 16px 18px;   /* reduced padding */
+}
+
+.about-book .book-page {
+  padding: 0;
+}
+
+
+/* =========================================
+   TELUGU MODE – TIGHTER SPACING
+   ========================================= */
+
+body.te .about-book .section-title {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+
+body.te .about-book .story-text {
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+
+/* =========================================
+   MOBILE SPACING FIX
+   ========================================= */
+
+@media (max-width: 768px) {
+  .about-book {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+
+  .about-book .overlay {
+    padding: 14px;
+  }
+}
+
+/* =========================================
+   TELUGU ONLY – BOOK TEXT FIX (LAPTOP + MOBILE)
+   ========================================= */
+
+/* Telugu language detection */
+html[lang="te"] .about-book .section-title {
+  font-size: 1.05rem !important;
+  margin-bottom: 4px !important;
+}
+
+html[lang="te"] .about-book .story-text {
+  font-size: 0.9rem !important;
+  line-height: 1.55 !important;
+  margin: 0 !important;
+}
+
+/* Reduce inner padding only for Telugu */
+html[lang="te"] .about-book .overlay {
+  padding: 12px 14px !important;
+}
+
+/* Remove extra vertical gaps */
+html[lang="te"] .about-book .page {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* =========================================
+   TEXT SPACING FIX – TELUGU + ENGLISH
+   ========================================= */
+
+/* Global text spacing reset (safe for all) */
+.story-text {
+  word-spacing: normal !important;
+  letter-spacing: normal !important;
+}
+
+/* Telugu-specific tightening */
+html[lang="te"] .story-text {
+  word-spacing: -0.08em !important;   /* 🔥 removes Telugu gaps */
+  letter-spacing: 0 !important;
+  text-align: justify;
+}
+
+/* Telugu headings tightening */
+html[lang="te"] .section-title {
+  word-spacing: -0.05em !important;
+  letter-spacing: 0 !important;
+}
+
+/* =========================================
+   TELUGU WORD GAP FIX – BOOK ONLY
+   ========================================= */
+
+/* Disable justify for Telugu (main cause of gaps) */
+html[lang="te"] .story-text {
+  text-align: left !important;
+}
+
+/* Tighten Telugu spacing properly */
+html[lang="te"] .story-text {
+  word-spacing: -0.25em !important;
+  letter-spacing: -0.01em !important;
+  line-height: 1.55 !important;
+}
+
+/* Telugu headings inside book */
+html[lang="te"] .section-title {
+  word-spacing: -0.15em !important;
+  letter-spacing: 0 !important;
+  line-height: 1.3 !important;
+}
+
+/* Prevent weird Telugu line breaks */
+html[lang="te"] .story-text,
+html[lang="te"] .section-title {
+  word-break: keep-all;
+  overflow-wrap: normal;
+  hyphens: none;
+}
+
+
+/* =====================================================
+   HARD TELUGU FIX – BOOK TEXT (NO GAPS GUARANTEED)
+   ===================================================== */
+
+/* Force correct Telugu rendering */
+.story-text:lang(te),
+.section-title:lang(te),
+.page p:lang(te) {
+  font-family: "Noto Serif Telugu", "Noto Sans Telugu", serif !important;
+}
+
+/* Kill justification completely (main cause of gaps) */
+.story-text:lang(te) {
+  text-align: left !important;
+  text-justify: none !important;
+}
+
+/* Fix spacing between Telugu words */
+.story-text:lang(te) {
+  word-spacing: 0 !important;
+  letter-spacing: 0 !important;
+  line-height: 1.55 !important;
+  white-space: normal !important;
+}
+
+/* Prevent Telugu word breaking */
+.story-text:lang(te),
+.section-title:lang(te) {
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  hyphens: none !important;
+}
+
+/* Slightly smaller Telugu only (laptop + mobile safe) */
+.story-text:lang(te) {
+  font-size: 22px !important;
+}
+
+/* Telugu headings */
+.section-title:lang(te) {
+  font-size: 30px !important;
+  line-height: 1.3 !important;
+}
+
+/* 🔴 FIX TELUGU WORD GAP ISSUE */
+html[lang="te"] .story-text,
+html[lang="te"] p,
+html[lang="te"] .book-page p {
+  text-align: left !important;
+  word-spacing: normal !important;
+  letter-spacing: normal !important;
+  line-height: 1.6;
+}
+
+
+/* 🔥 TELUGU GAP FIX – FINAL */
+body.lang-te .story-text,
+body.lang-te .overlay p,
+body.lang-te .book-page p {
+  word-spacing: normal !important;
+  letter-spacing: normal !important;
+  white-space: normal !important;
+  text-align: left !important;
+  line-height: 1.6;
+}
+
+/* Slightly smaller headings for Telugu */
+body.lang-te .section-title {
+  font-size: 1.35rem;
+  margin-bottom: 8px;
+}
+
+
+/* =========================
+   FIX SCROLLBAR FOR TELUGU
+   ========================= */
+
+/* Always allow scrolling */
+html, body {
+  overflow-y: auto !important;
+}
+
+/* Telugu-specific fix */
+body.lang-te {
+  overflow-y: auto !important;
+}
+
+/* Book pages must scroll internally if content is large */
+body.lang-te .page,
+body.lang-te .book-page,
+body.lang-te .overlay {
+  overflow-y: auto;
+}
+
+
+/* =========================
+   BOOK HEADING SIZE FIX
+   ========================= */
+
+.section-title {
+  font-family: 'Lovers Quarrel', cursive;
+  font-size: 25px;            /* ⬅ reduced */
+  color: rgb(202, 174, 11);
+  text-align: center;
+  margin-bottom: 10px;        /* ⬅ reduced gap */
+  line-height: 1.2;
+}
+
+/* =========================
+   TELUGU ONLY – BOOK HEADING FIX
+   ========================= */
+
+/* Laptop + Desktop */
+html[lang="te"] .about-book .section-title {
+  font-size: 26px;      /* ⬅ reduced only for Telugu */
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  html[lang="te"] .about-book .section-title {
+    font-size: 22px;
+    margin-bottom: 5px;
+  }
+}
+
+
+/* =========================
+   BOOK RESPONSIVE FIX
+========================= */
+
+/* Default book container */
+.book-wrapper{
+display:flex;
+justify-content:center;
+align-items:center;
+width:100%;
+overflow:hidden;
+}
+
+/* Mobile Fix */
+
+@media (max-width:768px){
+
+.book-wrapper{
+overflow-x:hidden;
+padding:0 10px;
+}
+
+/* shrink the book */
+.book{
+transform:scale(0.75);
+transform-origin:center;
+}
+
+/* reduce page width */
+.pages{
+width:100%;
+}
+
+/* reduce text size for mobile */
+
+.section-title{
+font-size:18px;
+}
+
+.story-text{
+font-size:14px;
+line-height:1.6;
+}
+
+}
+
+/* Small phones */
+
+@media (max-width:480px){
+
+.book{
+transform: scale(0.85);
+transform-origin: center;
+}
+
+.section-title{
+font-size:16px;
+}
+
+.story-text{
+font-size:13px;
+}
+
+}
+
+/* MOBILE TEXT FIX FOR BOOK */
+
+@media (max-width:768px){
+
+.about-book .section-title{
+font-size:35px !important;
+line-height:1.4 !important;
+}
+
+.about-book .story-text{
+font-size:30px !important;
+line-height:1.8 !important;
+}
+
+}

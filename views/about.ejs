@@ -1,0 +1,276 @@
+<% layout("/layouts/boilerplate") %>
+
+<body class="bg-white text-gray-800">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lovers+Quarrel&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/css/about.css">
+
+  <main>
+
+    <!-- =========================
+              BOOK SECTION
+         ========================= -->
+    <section class="py-20 px-6 about-book" data-aos="fade-up">
+      <div class="book-wrapper">
+        <div class="book">
+          <div id="pages" class="pages">
+
+            <!-- Cover -->
+            <div class="page" id="green">
+              <p class="text" data-i18n="about_cover">Our Story</p>
+            </div>
+
+            <!-- Page 1 -->
+            <div class="page">
+              <div class="book-page" onclick="playFlipSound()">
+                <div class="overlay">
+                  <h2 class="section-title" data-i18n="about_p1_title">
+                    Our Story – Beginning
+                  </h2>
+                  <p class="story-text" data-i18n="about_p1_text">
+                    Swargadhamam was born from pain, shock, and a deep sense of responsibility. Before this place existed,
+                    the Hindu burial ground in Nandyal near the RTC bus station was little more than an open patch of land
+                    where families struggled to give their loved ones a dignified farewell. During rains, the ground turned
+                    into slush, pyres could not be lit properly, and grieving relatives stood helpless under umbrellas or
+                    makeshift plastic sheets.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Page 2 -->
+            <div class="page">
+              <div class="book-page" onclick="playFlipSound()">
+                <div class="overlay">
+                  <h2 class="section-title" data-i18n="about_p2_title">
+                    Our Story – The Struggle
+                  </h2>
+                  <p class="story-text" data-i18n="about_p2_text">
+                    For years, the people of Nandyal silently accepted these conditions, even as they watched stray animals
+                    wander near half-burnt pyres and families forced to leave quickly because there was no safe, clean space
+                    to sit through the final rites. The situation became unbearable during the first wave of COVID-19,
+                    when more bodies started coming in and many were not even given decent final rites due to fear, lack of
+                    space, and complete absence of proper facilities.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Page 3 -->
+            <div class="page">
+              <div class="book-page" onclick="playFlipSound()">
+                <div class="overlay">
+                  <h2 class="section-title" data-i18n="about_p3_title">
+                    Community Action
+                  </h2>
+                  <p class="story-text" data-i18n="about_p3_text">
+                    They began by visiting modern crematoriums and burial grounds in other parts of India, including those
+                    built by large foundations, to understand what a truly humane facility should look like. With this
+                    learning, they prepared a blueprint for Nandyal’s own dignified cremation space: a place that would
+                    protect families from sun and rain, offer clean washrooms, waiting lounges, ash collection points,
+                    ritual shelters, and most importantly, an atmosphere of peace instead of fear or disgust.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Page 4 -->
+            <div class="page">
+              <div class="book-page" onclick="playFlipSound()">
+                <div class="overlay">
+                  <h2 class="section-title" data-i18n="about_p4_title">
+                    Construction & Challenges
+                  </h2>
+                  <p class="story-text" data-i18n="about_p4_text">
+                    What emerged from this struggle is Swargadhamam — a modern, ultra-clean cremation facility, with
+                    separate waiting lounges, ultra-modern washrooms, cremation park, paved walkways, ash collection
+                    points, shelters for rituals, and all-weather infrastructure that allows cremations even during
+                    heavy rain. Almost 80% of the space has been turned into a green belt with hundreds of trees and
+                    saplings, including around 400 planted in memory of legendary singer S.P. Balasubrahmanyam.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Page 5 -->
+            <div class="page">
+              <div class="book-page" onclick="playFlipSound()">
+                <div class="overlay">
+                  <h2 class="section-title" data-i18n="about_p5_title">
+                    Swargadhamam Today
+                  </h2>
+                  <p class="story-text" data-i18n="about_p5_text">
+                    Today, Swargadhamam is ISO 9001:2015 certified for its quality systems and offers cremation services at
+                    an affordable cost of just ₹750, so that even the poorest families can access dignified last rites
+                    without fear of exploitation or humiliation. What was once a place of neglect and discomfort has
+                    become a calm, green, organized space where families can cry, remember, and let go in peace.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Back Covers -->
+            <div class="page back-cover"></div>
+            <div class="page back-cover"></div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+                MISSION
+         ========================= -->
+    <section class="mission-section py-20 px-6 max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10"
+      data-aos="fade-right">
+      <div class="flex-1 glass-overlay">
+        <h2 class="section-title mb-4" data-i18n="about_mission_title" style="font-size:70px">
+          🎯 Mission
+        </h2>
+        <p class="text-lg leading-relaxed" data-i18n="about_mission_text">
+         To provide complete and respectful Hindu last-rite services (Antyeshti Sanskaras) as per Sanatana Dharma.
+
+To maintain a clean, green, and eco-friendly sacred space that reflects purity and peace.
+
+To ensure equal, compassionate, and affordable services for every Hindu, without discrimination.
+
+To preserve traditional rituals and customs while offering modern basic facilities for families.
+
+To serve the community with humanity, humility, and spiritual responsibility.
+
+✨ “Serving the final journey with faith, dignity, and eternal values.”
+        </p>
+      </div>
+      <div class="flex-1">
+        <video class="rounded-lg shadow-md hover-zoom mission-video" controls autoplay muted loop>
+          <source src="images/v2.mp4" type="video/mp4">
+        </video>
+      </div>
+    </section>
+
+    <!-- =========================
+         VISION
+         ========================= -->
+    <section class="vision-section py-20 px-6 max-w-6xl mx-auto flex flex-col md:flex-row-reverse items-center gap-10"
+      data-aos="fade-left">
+      <div class="flex-1 glass-overlay">
+        <h2 class="section-title mb-4" data-i18n="about_vision_title"   style="font-size:70px">
+          🌟 Vision
+        </h2>
+        <p class="text-lg leading-relaxed" data-i18n="about_vision_text">
+         To be a sacred, serene, and spiritually uplifting Swarga Dhamam that honors every departed Hindu soul with dignity, purity, and devotion, while offering peace, solace, and hope to grieving families in and around Nandyal.
+        </p>
+      </div>
+      <div class="flex-1">
+        <img src="images/after.jpg" alt="Vision" class="rounded-lg shadow-md hover-zoom vision-img" />
+      </div>
+    </section>
+
+<!-- Core Values Section -->
+<section class="core-values-section py-20 px-6" data-aos="zoom-in">
+  <h2 class="text-4xl font-bold text-center text-gray-800 mb-12" data-i18n="core_values_title">
+    Our Core Values
+  </h2>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+
+    <!-- Compassion -->
+    <div class="value-card bg-white rounded-2xl shadow-xl p-6 text-center">
+      <div class="card-glow"></div>
+      <svg class="icon-float icon-ripple mx-auto w-16 h-16 mb-4 text-green-600" fill="none" stroke="currentColor"
+        stroke-width="2" viewBox="0 0 24 24">
+        <path
+          d="M12 21C12 21 4 13.5 4 8.5C4 5.42 6.42 3 9.5 3C11.24 3 12.91 3.81 14 5.08C15.09 3.81 16.76 3 18.5 3C21.58 3 24 5.42 24 8.5C24 13.5 16 21 16 21H12Z" />
+      </svg>
+      <h3 class="text-xl font-semibold text-green-600 mb-2" data-i18n="core_compassion">
+      🕯️ Compassion in Service
+      </h3>
+      <p class="text-gray-700" data-i18n="core_compassion_text">
+        We serve grieving families with empathy, patience, and kindness, understanding their emotional journey
+      </p>
+    </div>
+
+    <!-- Dignity -->
+    <div class="value-card bg-white rounded-2xl shadow-xl p-6 text-center">
+      <div class="card-glow"></div>
+      <svg class="icon-float icon-ripple mx-auto w-16 h-16 mb-4 text-green-600" fill="none" stroke="currentColor"
+        stroke-width="2" viewBox="0 0 24 24">
+        <path d="M12 2L15 8H21L16.5 12L18 18L12 15L6 18L7.5 12L3 8H9L12 2Z" />
+      </svg>
+      <h3 class="text-xl font-semibold text-green-600 mb-2" data-i18n="core_dignity">
+        🙏 Dignity for Every Soul
+      </h3>
+      <p class="text-gray-700" data-i18n="core_dignity_text">
+        Every departed soul is honored with equal respect, regardless of status, background, or wealth
+      </p>
+    </div>
+
+    <!-- Community -->
+    <div class="value-card bg-white rounded-2xl shadow-xl p-6 text-center">
+      <div class="card-glow"></div>
+      <svg class="icon-float icon-ripple mx-auto w-16 h-16 mb-4 text-green-600" fill="none" stroke="currentColor"
+        stroke-width="2" viewBox="0 0 24 24">
+        <path
+          d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM4 20V18C4 15.79 9.33 14 12 14C14.67 14 20 15.79 20 18V20H4Z" />
+      </svg>
+      <h3 class="text-xl font-semibold text-green-600 mb-2" data-i18n="core_community">
+        🔔 Transparency & Trust
+      </h3>
+      <p class="text-gray-700" data-i18n="core_community_text">
+       Our operations, charges, and services are clear, fair, and honest, building trust within the community
+      </p>
+    </div>
+
+    <!-- Excellence -->
+    <div class="value-card bg-white rounded-2xl shadow-xl p-6 text-center">
+      <div class="card-glow"></div>
+      <svg class="icon-float icon-ripple mx-auto w-16 h-16 mb-4 text-green-600" fill="none" stroke="currentColor"
+        stroke-width="2" viewBox="0 0 24 24">
+        <path d="M12 2L15 8H21L16.5 12L18 18L12 15L6 18L7.5 12L3 8H9L12 2Z" />
+      </svg>
+      <h3 class="text-xl font-semibold text-green-600 mb-2" data-i18n="core_excellence">
+        📜 Faith in Sanatana Dharma
+      </h3>
+      <p class="text-gray-700" data-i18n="core_excellence_text">
+       All services are performed in accordance with Hindu traditions, rituals, and spiritual values passed down through generations
+      </p>
+    </div>
+
+    <!-- Transparency -->
+    <div class="value-card bg-white rounded-2xl shadow-xl p-6 text-center">
+      <div class="card-glow"></div>
+      <svg class="icon-float icon-ripple mx-auto w-16 h-16 mb-4 text-green-600" fill="none" stroke="currentColor"
+        stroke-width="2" viewBox="0 0 24 24">
+        <path d="M3 3H21V21H3V3ZM7 7H17V17H7V7Z" />
+      </svg>
+      <h3 class="text-xl font-semibold text-green-600 mb-2" data-i18n="core_transparency">
+      🌍 Environmental Responsibility
+      </h3>
+      <p class="text-gray-700" data-i18n="core_transparency_text">
+       We are committed to eco-friendly practices that respect nature while honoring sacred rituals
+      </p>
+    </div>
+
+    <!-- Support -->
+    <div class="value-card bg-white rounded-2xl shadow-xl p-6 text-center">
+      <div class="card-glow"></div>
+      <svg class="icon-float icon-ripple mx-auto w-16 h-16 mb-4 text-green-600" fill="none" stroke="currentColor"
+        stroke-width="2" viewBox="0 0 24 24">
+        <path
+          d="M12 2C6.48 2 2 6.48 2 12C2 16.41 5.22 20.17 9.44 21.5L12 22L14.56 21.5C18.78 20.17 22 16.41 22 12C22 6.48 17.52 2 12 2Z" />
+      </svg>
+      <h3 class="text-xl font-semibold text-green-600 mb-2" data-i18n="core_support">
+        🌿 Purity & Cleanliness
+      </h3>
+      <p class="text-gray-700" data-i18n="core_support_text">
+        We believe a sacred place must reflect inner and outer purity. Cleanliness, greenery, and order are maintained at all times
+      </p>
+    </div>
+
+  </div>
+</section>
+
+  </main>
+
+  <script src="/js/about.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+
+
+.policy-container {
+  max-width: 1000px;
+  margin: 80px auto;
+  padding: 40px 30px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  animation: fadeUp 0.8s ease-in-out;
+}
+
+.policy-title {
+  font-size: 42px;
+  font-weight: 700;
+  color: #0f5132;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.policy-subtitle {
+  text-align: center;
+  color: #6c757d;
+  margin-bottom: 40px;
+  font-size: 16px;
+}
+
+.policy-section {
+  margin-bottom: 35px;
+  padding-left: 20px;
+  border-left: 4px solid #198754;
+  animation: slideIn 0.6s ease forwards;
+}
+
+.policy-section h3 {
+  font-size: 22px;
+  color: #14532d;
+  margin-bottom: 10px;
+}
+
+.policy-section p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #374151;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .policy-container {
+    margin: 40px 15px;
+    padding: 25px 20px;
+  }
+
+  .policy-title {
+    font-size: 32px;
+  }
+}

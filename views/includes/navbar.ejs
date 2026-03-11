@@ -1,0 +1,116 @@
+<style>
+.language-switcher{
+  display:flex;
+  gap:8px;
+}
+
+.lang-btn{
+  border:none;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+/* English Button */
+.english-btn{
+  background:linear-gradient(45deg,#3498db,#6dd5fa);
+  color:white;
+}
+
+.english-btn:hover{
+  transform:scale(1.05);
+  box-shadow:0 3px 8px rgba(0,0,0,0.3);
+}
+
+/* Telugu Button */
+.telugu-btn{
+  background:linear-gradient(45deg,#f39c12,#f1c40f);
+  color:white;
+}
+
+.telugu-btn:hover{
+  transform:scale(1.05);
+  box-shadow:0 3px 8px rgba(0,0,0,0.3);
+}
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark w-100">
+
+
+  <div class="container-fluid ">
+
+ 
+    <a class="navbar-brand d-flex align-items-center  flex-nowrap me-2" href="/">
+      <img src="/images/logo.jpg" alt="Logo" />
+      <div class="ms-2">
+        <div>Swargadhamam</div>
+        <small style="color: #2ecc71">A Sacred Resting Place</small>
+      </div>
+    </a>
+
+    <button
+      class="navbar-toggler "
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#mainNavbar"
+      aria-controls="mainNavbar"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- COLLAPSIBLE CONTENT -->
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/gallery">Gallery</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/impact">Our Impact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li>
+        <li class="nav-item ms-lg-3">
+          <a class="btn btn-success" href="/donate">❤️ Donate Now</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+
+<div class="language-switcher">
+  <button onclick="changeLanguage('en')" class="lang-btn english-btn">
+    🇬🇧 English
+  </button>
+
+  <button onclick="changeLanguage('te')" class="lang-btn telugu-btn">
+    🇮🇳 తెలుగు
+  </button>
+</div>
+<% if(!currUser){ %>
+<li class="nav-item">
+  <a class="nav-link" href="/signup">Sign Up</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="/login">Log in</a>
+</li>
+<% } %>
+
+<% if(currUser){ %>
+<li class="nav-item">
+  <a class="nav-link" href="/logout">Log out</a>
+</li>
+<% } %>
+      </ul>
+    </div>
+  </div>
+</nav>

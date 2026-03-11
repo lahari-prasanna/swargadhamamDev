@@ -1,0 +1,456 @@
+<% layout("/layouts/boilerplate")%>
+
+<section id="donate" class="donate-section">
+
+<div class="falling-coins">
+<span class="coin"></span>
+<span class="coin"></span>
+<span class="coin"></span>
+<span class="coin"></span>
+<span class="coin"></span>
+<span class="coin"></span>
+<span class="coin"></span>
+<span class="coin"></span>
+</div>
+
+<div class="donate-container">
+
+<h2 class="donate-heading animate-heading">
+Donate to <span class="highlight">Swargadhamam</span>
+</h2>
+
+
+
+<div class="donate-flex">
+
+<!-- LEFT SIDE FORM -->
+<div id="donation-form" class="donate-form glowing-form">
+
+<h3 class="form-title">Donation Form</h3>
+
+<div class="preset-amounts">
+<button type="button" class="amount-btn" data-amount="500">₹500</button>
+<button type="button" class="amount-btn" data-amount="1000">₹1,000</button>
+<button type="button" class="amount-btn" data-amount="2500">₹2,500</button>
+<button type="button" class="amount-btn" data-amount="5000">₹5,000</button>
+<button type="button" class="amount-btn" data-amount="10000">₹10,000</button>
+</div>
+
+<input type="number" id="donation-amount" class="custom-amount" placeholder="Enter custom amount" required/>
+
+<input type="text" id="donor-name" class="donor-input" placeholder="Your Name" required/>
+
+<input type="email" class="donor-input" placeholder="Your Email" required/>
+
+<input type="tel" class="donor-input" placeholder="Your Phone Number"/>
+
+<!-- DONATE BUTTON -->
+<button type="button" class="donate-submit" id="donate-btn">
+Donate Now
+</button>
+
+<p class="secure-note" style="color: black;">🔒 Your payment is secure.</p>
+
+</div>
+
+<!-- RIGHT SIDE PAYMENT -->
+<div class="qr-section">
+
+<div id="qr-display">
+
+<h3 class="info-title">Scan to Donate</h3>
+
+<img
+src="/images/qr-donation.jpeg"
+alt="UPI QR Code"
+class="qr-code"
+/>
+
+<br><br>
+
+<a 
+href="upi://pay?pa=9063643653@SBI&pn=Swargadhamam&cu=INR" 
+class="donate-submit">
+
+Pay via UPI
+
+</a>
+</div>
+
+<!-- PAYMENT OPTIONS (Hidden first) -->
+<div id="payment-options" style="display:none; margin-top:20px;">
+
+<h3>Select Payment Method</h3>
+
+<div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
+
+<div class="payment-cards">
+
+<div class="payment-card" onclick="showPayment('qr')">
+<h4>📱 QR Code</h4>
+<p style="color:black;">Scan with PhonePe / GPay</p>
+</div>
+
+<div class="payment-card" onclick="showPayment('bank')">
+<h4>🏦 Bank Transfer</h4>
+<p style="color:black;">Direct account transfer</p>
+</div>
+
+<div class="payment-card" onclick="showPayment('razorpay')">
+<h4>💳 Razorpay</h4>
+<p style="color:black;">Pay online securely</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<br /> <br /> <br />
+<!-- BANK OPTION -->
+<div id="bank" class="payment-method" style="display:none">
+
+<h3>Bank to Bank Transfer</h3>
+
+<p style="color:black;"><b>Account Name:</b> Nandyala Nava Nirmana Sam</p>
+<p style="color:black;"><b>UPI ID:</b> 9063643653@SBI</p>
+
+<br>
+
+<a 
+href="upi://pay?pa=9063643653@SBI&pn=Nandyala%20Nava%20Nirmana%20Sam&cu=INR"
+class="donate-submit">
+
+Pay using Bank / UPI
+
+</a><br>
+
+<button class="donate-submit" onclick="sendBankCertificate()">
+I Have Completed Bank Payment
+</button>
+
+<p style="font-size:13px;margin-top:10px;color:black">
+Clicking the button will open PhonePe / Google Pay / Paytm to complete the payment.
+</p>
+
+</div>
+
+<!-- RAZORPAY OPTION -->
+<div id="razorpay" class="payment-method" style="display:none">
+
+<h3>Online Payment</h3>
+
+<button class="donate-submit" onclick="payWithRazorpay()">
+Pay with Razorpay
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- DONOR WALL -->
+<div class="donor-wall">
+
+<div class="donor-header">
+<h3>🌟 Recent Donors</h3>
+
+<p style="text-align:center;font-weight:bold;color:white;margin-top:5px;">
+Total Donations: ₹<span id="total-donation">0</span>
+</p>
+
+</div>
+
+<div class="donor-body">
+<ul id="donor-list">
+</ul>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="donate-info">
+
+<div class="info-box donate-benefits">
+
+<h3 class="info-title">Why Donate?</h3>
+
+<ul class="info-list">
+<li>✔ Support our mission</li>
+<li>✔ Help families in need</li>
+<li>✔ Maintain facilities</li>
+<li>✔ Expand our services</li>
+<li>✔ Create lasting impact</li>
+</ul>
+
+</div>
+
+<div class="info-box donate-impact">
+
+<h3 class="info-title">Your Impact</h3>
+
+<ul class="info-list">
+<li>🌱 Environmental care</li>
+<li>🤝 Community support</li>
+<li>🏗 Infrastructure development</li>
+</ul>
+
+</div>
+
+<aside class="info-aside">
+
+<div class="info-box donate-other">
+
+<h3 class="info-title">Contact Us</h3>
+
+<div class="contact-links">
+
+  <p class="contact-item">
+    📞 <a href="tel:+919440290460">+91 9440290460</a><br>
+     📞 <a href="tel:+919985002900">+91 9985002900</a>
+  </p>
+
+  <p class="contact-item">
+    ✉️ <a href="mailto:swargadhamamnandyal@gmail.com">swargadhamamnandyal@gmail.com</a><br>
+    ✉️ <a href="mailto:entmadhusudan@gmail.com">entmadhusudan@gmail.com</a>
+  </p>
+
+</div>
+
+</div>
+
+</aside>
+
+</div>
+
+</div>
+
+</section>
+
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+const donateBtn = document.getElementById("donate-btn");
+
+donateBtn.addEventListener("click", function(){
+
+const amount = document.getElementById("donation-amount").value;
+const name = document.getElementById("donor-name").value;
+const email = document.querySelector('input[type="email"]').value;
+
+if(amount === "" || name === "" || email === ""){
+
+alert("Please fill all required fields before donating.");
+return;
+
+}
+
+document.getElementById("payment-options").style.display = "block";
+
+});
+
+// ⭐ ADD THIS BLOCK
+document.querySelectorAll('.amount-btn').forEach(btn => {
+
+btn.addEventListener('click', function(){
+
+const amount = this.dataset.amount;
+
+document.getElementById("donation-amount").value = amount;
+
+});
+
+});
+
+});
+
+function showPayment(type){
+
+document.getElementById("qr-display").style.display="none";
+document.getElementById("bank").style.display="none";
+document.getElementById("razorpay").style.display="none";
+
+if(type === "qr"){
+document.getElementById("qr-display").style.display="block";
+}
+
+if(type === "bank"){
+document.getElementById("bank").style.display="block";
+}
+
+if(type === "razorpay"){
+document.getElementById("razorpay").style.display="block";
+}
+
+}
+
+
+function payWithRazorpay(){
+
+let amount = document.getElementById("donation-amount").value;
+let name = document.getElementById("donor-name").value;
+let email = document.querySelector('input[type="email"]').value;
+
+if(amount === "" || name === "" || email === ""){
+alert("Please fill donation details first");
+return;
+}
+
+var options = {
+
+"key": "rzp_live_SPBeD2QU7emdWj",
+
+"amount": amount * 100,
+
+"currency": "INR",
+
+"name": "Swargadhamam",
+
+"description": "Donation",
+
+handler: async function (response){
+
+alert("Payment Successful!");
+
+let name = document.getElementById("donor-name").value;
+let email = document.querySelector('input[type="email"]').value;
+let amount = document.getElementById("donation-amount").value;
+
+await fetch("/send-certificate",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+name:name,
+email:email,
+amount:amount,
+paymentMethod:"razorpay"
+})
+
+});
+
+alert("Certificate sent to your email!");
+
+},
+
+
+"prefill": {
+
+"name": name,
+"email": email
+
+},
+
+"theme": {
+"color": "#16a34a"
+}
+
+};
+
+var rzp = new Razorpay(options);
+
+rzp.open();
+
+}
+
+
+async function loadDonors(){
+
+try{
+
+const res = await fetch("/api/donors");
+const data = await res.json();
+
+const donorList = document.getElementById("donor-list");
+const totalDonation = document.getElementById("total-donation");
+
+if(!donorList) return;
+
+donorList.innerHTML = "";
+
+data.donors.forEach(donor=>{
+
+const li = document.createElement("li");
+
+li.style.display="flex";
+li.style.justifyContent="space-between";
+li.style.padding="6px 10px";
+li.style.borderBottom="1px solid #eee";
+
+li.innerHTML=`
+<span> 🤝${donor.name}</span>
+<span>₹${donor.amount}</span>
+`;
+
+donorList.appendChild(li);
+
+});
+
+if(totalDonation){
+totalDonation.innerText = data.total;
+}
+
+}catch(err){
+
+console.log("Donor loading error",err);
+
+}
+
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+
+loadDonors();
+
+setInterval(loadDonors,5000);
+
+});
+
+
+function sendBankCertificate(){
+
+let name = document.getElementById("donor-name").value;
+let email = document.querySelector('input[type="email"]').value;
+let amount = document.getElementById("donation-amount").value;
+
+if(name === "" || email === "" || amount === ""){
+alert("Please fill name, email and amount to receive certificate");
+return;
+}
+
+fetch("/send-certificate",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+name:name,
+email:email,
+amount:amount,
+paymentMethod:"bank"
+})
+
+});
+
+alert("Certificate will be sent to your email!");
+
+}
+</script>

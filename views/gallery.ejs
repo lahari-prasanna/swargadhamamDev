@@ -1,0 +1,164 @@
+<% layout("/layouts/boilerplate") %>
+
+<body>
+
+  <section class="gallery-section py-20 px-6 bg-gray-50" id="gallery">
+
+    <!-- Video Hero -->
+    <div class="video-hero relative mb-16">
+      <div class="video-container floating-video">
+        <video id="missionVideo" class="video-element rounded-xl shadow-lg" playsinline>
+          <source src="images/v1.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+
+        <!-- Custom Controls -->
+
+        <div class="video-controls">
+          <button id="playPause">▶</button>
+          <input type="range" id="seekBar" value="0" min="0" max="100">
+          <button id="muteBtn">🔊</button>
+          <input type="range" id="volumeBar" min="0" max="1" step="0.1" value="1">
+          <button id="fullscreenBtn">⛶</button>
+        </div>
+      </div>
+
+
+      <!-- Caption Box Below Video -->
+      <div class="video-caption-box">
+        <h2 class="caption-title">Our Journey in Pictures</h2>
+        <p class="caption-subtitle">Every frame tells a story of dignity, compassion, and community.</p>
+        <a href="#donate" class="support-btn" onclick="window.location.href='donate.html'">Support Our
+          Mission</a>
+      </div>
+    </div>
+    </div>
+
+
+    <!-- Gallery Filter Buttons -->
+    <div class="gallery-filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="facilities">Facilities</button>
+      <button class="filter-btn" data-filter="events">Events</button>
+      <button class="filter-btn" data-filter="community">Community</button>
+    </div>
+
+    <!-- Masonry Gallery -->
+    <!-- <div class="masonry-gallery">
+      <div class="gallery-item facilities"><img src="images/hero.jpg" alt="Gallery 1" class="gallery-img" />
+        <div class="caption">Gallery 1</div>
+      </div>
+      <div class="gallery-item events"><img src="images/logo.jpg" alt="Gallery 2" class="gallery-img" />
+        <div class="caption">Gallery 2</div>
+      </div>
+      <div class="gallery-item community"><img src="images/commuityhall.jpg" alt="Gallery 3" class="gallery-img" />
+        <div class="caption">Gallery 3</div>
+      </div>
+      <div class="gallery-item facilities"><img src="images/poster.jpg" alt="Gallery 4" class="gallery-img" />
+        <div class="caption">Gallery 4</div>
+      </div>
+      <div class="gallery-item events"><img src="images/p9.jpg" alt="Gallery 5" class="gallery-img" />
+        <div class="caption">Gallery 5</div>
+      </div>
+      <div class="gallery-item community"><img src="images/people.jpg" alt="Gallery 6" class="gallery-img" />
+        <div class="caption">Gallery 6</div>
+      </div>
+      <div class="gallery-item facilities"><img src="images/before.jpg" alt="Gallery 7" class="gallery-img" />
+        <div class="caption">Gallery 7</div>
+      </div>
+      <div class="gallery-item events"><img src="images/After2.jpg" alt="Gallery 8" class="gallery-img" />
+        <div class="caption">Gallery 8</div>
+      </div>
+      <div class="gallery-item community"><img src="images/p3.jpg" alt="Gallery 9" class="gallery-img" />
+        <div class="caption">Gallery 9</div>
+      </div>
+      <div class="gallery-item facilities"><img src="images/p9.jpg" alt="Gallery 10" class="gallery-img" />
+        <div class="caption">Gallery 10</div>
+      </div>
+      <div class="gallery-item events"><img src="images/ratham.jpg" alt="Gallery 11" class="gallery-img" />
+        <div class="caption">Gallery 11</div>
+      </div>
+      <div class="gallery-item community"><img src="images/p8.jpg" alt="Gallery 12" class="gallery-img" />
+        <div class="caption">Gallery 12</div>
+      </div>
+      <div class="gallery-item facilities"><img src="images/Male.jpg" alt="Gallery 13" class="gallery-img" />
+        <div class="caption">Gallery 13</div>
+      </div>
+      <div class="gallery-item events"><img src="images/construction.jpg" alt="Gallery 14" class="gallery-img" />
+        <div class="caption">Gallery 14</div>
+      </div>
+      <div class="gallery-item community"><img src="images/c2.jpg" alt="Gallery 15" class="gallery-img" />
+        <div class="caption">Gallery 15</div>
+      </div>
+      <div class="gallery-item facilities"><img src="images/Female.jpg" alt="Gallery 16" class="gallery-img" />
+        <div class="caption">Gallery 16</div>
+      </div>
+      <div class="gallery-item events"><img src="images/mineral.jpg" alt="Gallery 17" class="gallery-img" />
+        <div class="caption">Gallery 17</div>
+      </div>
+      <div class="gallery-item community"><img src="images/shiva.jpg" alt="Gallery 18" class="gallery-img" />
+        <div class="caption">Gallery 18</div>
+      </div>
+      <div class="gallery-item facilities"><img src="images/p10.jpg" alt="Gallery 19" class="gallery-img" />
+        <div class="caption">Gallery 19</div>
+      </div>
+      <div class="gallery-item events"><img src="images/shed.jpg" alt="Gallery 20" class="gallery-img" />
+        <div class="caption">Gallery 20</div>
+      </div>
+      <div class="gallery-item community"><img src="images/office.jpg" alt="Gallery 21" class="gallery-img" />
+        <div class="caption">Gallery 21</div>
+      </div>
+      <div class="gallery-item facilities"><img src="images/After4.jpg" alt="Gallery 22" class="gallery-img" />
+        <div class="caption">Gallery 22</div>
+      </div>
+      <div class="gallery-item events"><img src="images/Freezer.jpg" alt="Gallery 23" class="gallery-img" />
+        <div class="caption">Gallery 23</div>
+      </div>
+      <div class="gallery-item community"><img src="images/c4.jpg" alt="Gallery 24" class="gallery-img" />
+        <div class="caption">Gallery 24</div>
+      </div>
+      <div class="gallery-item facilities"><img src="images/p11.jpg" alt="Gallery 25" class="gallery-img" />
+        <div class="caption">Gallery 25</div>
+      </div>
+    </div> -->
+
+    <div class="container py-4">
+      <div class="row g-4">
+    
+        <% allPhotos.forEach((item, index) => { %>
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <a href="/gallery/<%= item._id %>" class="text-decoration-none">
+    
+              <div class="gallery-item overflow-hidden rounded">
+                <img
+                  src="<%= item.image.url %>"
+                  alt="<%= item.title || `Gallery ${index + 1}` %>"
+                  class="img-fluid gallery-img"
+                />
+    
+                <% if(item.title) { %>
+                <div class="caption text-center mt-2 text-dark">
+                  <%= item.title %>
+                </div>
+                <% } %>
+              </div>
+    
+            </a>
+          </div>
+        <% }) %>
+    
+      </div>
+    </div>
+    
+    <!-- Lightbox Modal -->
+    <div id="lightbox">
+      <button id="closeLightbox">&times;</button>
+      <button id="prev">&#10094;</button>
+      <img id="lightboxImg" src="" alt="Gallery Image" />
+      <button id="next">&#10095;</button>
+    </div>
+
+
+
+    <script src="/js/gallery.js"></script>
+</body>

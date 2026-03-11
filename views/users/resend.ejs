@@ -1,0 +1,11 @@
+<% layout('/layouts/boilerplate') -%>
+<h2>Resend Verification Email</h2>
+
+<form action="/resend-verification" method="POST">
+  <div>
+    <label>Email</label>
+    <input type="email" name="email" required />
+  </div>
+
+  <button type="submit">Resend Verification</button>
+</form>
