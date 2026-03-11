@@ -4,7 +4,7 @@ if (process.env.NODE_ENV != "production") {
 
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const path = require("path");
 const ejsMate = require("ejs-mate");
@@ -102,8 +102,8 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASSWORD,
   },
   tls: {
-    rejectUnauthorized: false
-  }
+    rejectUnauthorized: false,
+  },
 });
 
 /* ------------------ ROUTES ------------------ */
@@ -151,23 +151,20 @@ app.get("/contact", (req, res) => {
   res.render("contact.ejs");
 });
 
-app.post("/contact-message", async (req,res)=>{
+app.post("/contact-message", async (req, res) => {
+  const { name, email, phone, subject, message } = req.body;
 
-const {name,email,phone,subject,message} = req.body;
+  try {
+    /* EMAIL TO ADMIN */
 
-try{
+    await transporter.sendMail({
+      from: process.env.EMAIL,
 
-/* EMAIL TO ADMIN */
+      to: "swargadhamamnandyal@gmail.com",
 
-await transporter.sendMail({
+      subject: "New Contact Message - Swargadhamam",
 
-from: process.env.EMAIL,
-
-to: "swargadhamamnandyal@gmail.com",
-
-subject: "New Contact Message - Swargadhamam",
-
-html: `
+      html: `
 
 <h2>New Contact Message</h2>
 
@@ -183,22 +180,19 @@ html: `
 
 <p>${message}</p>
 
-`
+`,
+    });
 
-});
+    /* AUTO REPLY TO USER */
 
+    await transporter.sendMail({
+      from: process.env.EMAIL,
 
-/* AUTO REPLY TO USER */
+      to: email,
 
-await transporter.sendMail({
+      subject: "Thank you for contacting Swargadhamam",
 
-from: process.env.EMAIL,
-
-to: email,
-
-subject: "Thank you for contacting Swargadhamam",
-
-html: `
+      html: `
 
 <h2>Thank You for Contacting Swargadhamam</h2>
 
@@ -218,24 +212,22 @@ html: `
 
 <p>Nandyal, Andhra Pradesh</p>
 
-`
+`,
+    });
 
-});
+    req.flash(
+      "success",
+      "Message sent successfully! We will contact you soon.",
+    );
 
-req.flash("success","Message sent successfully! We will contact you soon.");
+    res.redirect("/contact");
+  } catch (err) {
+    console.log(err);
 
-res.redirect("/contact");
+    req.flash("error", "Something went wrong. Please try again.");
 
-}catch(err){
-
-console.log(err);
-
-req.flash("error","Something went wrong. Please try again.");
-
-res.redirect("/contact");
-
-}
-
+    res.redirect("/contact");
+  }
 });
 // Privacy
 app.get("/privacy-policy", (req, res) => {
@@ -271,9 +263,11 @@ app.post("/create-order", async (req, res) => {
 app.post("/send-certificate", async (req, res) => {
   const { name, email, amount, paymentMethod } = req.body;
 
-  if(paymentMethod === "qr"){
-return res.json({message:"QR payments do not receive certificate"});
-}
+  if (paymentMethod === "qr") {
+    return res.json({
+      message: "QR payments do not receive certificate",
+    });
+  }
 
   try {
     /* Save donor */
@@ -286,58 +280,68 @@ return res.json({message:"QR payments do not receive certificate"});
 
     /* Load certificate template */
     const template = await loadImage(
-      path.join(__dirname, "public/certificate/template.png")
+      path.join(__dirname, "public/certificate/template.png"),
     );
 
     const canvas = createCanvas(template.width, template.height);
     const ctx = canvas.getContext("2d");
-ctx.drawImage(template, 0, 0);
+    ctx.drawImage(template, 0, 0);
 
-/* LOAD SIGNATURE IMAGES */
+    /* LOAD SIGNATURE IMAGES */
 
-const presidentSign = await loadImage(
-path.join(__dirname,"public/signatures/president.png")
-);
+    const presidentSign = await loadImage(
+      path.join(__dirname, "public/signatures/president.png"),
+    );
 
-const vicePresidentSign = await loadImage(
-path.join(__dirname,"public/signatures/vice-president.png")
-);
+    const vicePresidentSign = await loadImage(
+      path.join(__dirname, "public/signatures/vice-president.png"),
+    );
 
-const secretarySign = await loadImage(
-path.join(__dirname,"public/signatures/secretary.png")
-);
+    const secretarySign = await loadImage(
+      path.join(__dirname, "public/signatures/secretary.png"),
+    );
 
-/* DRAW SIGNATURES ON CERTIFICATE */
+    /* DRAW SIGNATURES ON CERTIFICATE */
 
-ctx.drawImage(presidentSign, 220, 940, 200, 80);
+    ctx.drawImage(presidentSign, 220, 940, 200, 80);
 
-ctx.drawImage(vicePresidentSign, template.width/2 - 100, 940, 200, 80);
+    ctx.drawImage(
+      vicePresidentSign,
+      template.width / 2 - 100,
+      940,
+      200,
+      80,
+    );
 
-ctx.drawImage(secretarySign, template.width - 420, 940, 200, 80);
+    ctx.drawImage(secretarySign, template.width - 420, 940, 200, 80);
 
-const today = new Date().toLocaleDateString("en-IN");
+    const today = new Date().toLocaleDateString("en-IN");
 
-ctx.font = "bold 42px Arial";
-ctx.fillStyle = "#000";
-ctx.textAlign = "center";
+    ctx.font = "bold 42px Arial";
+    ctx.fillStyle = "#000";
+    ctx.textAlign = "center";
 
-/* NAME POSITION */
-ctx.fillText(name, template.width / 2, 620);
+    /* NAME POSITION */
+    ctx.fillText(name, template.width / 2, 620);
 
-ctx.font = "30px Arial";
-ctx.fillText("Donation Amount: ₹" + amount, template.width / 2, template.height / 2 + 100);
+    ctx.font = "30px Arial";
+    ctx.fillText(
+      "Donation Amount: ₹" + amount,
+      template.width / 2,
+      template.height / 2 + 100,
+    );
 
-ctx.font = "30px Arial";
-ctx.textAlign = "left";
+    ctx.font = "30px Arial";
+    ctx.textAlign = "left";
 
-/* DATE POSITION */
-ctx.fillText(today, template.width / 2 + 150, 820);
+    /* DATE POSITION */
+    ctx.fillText(today, template.width / 2 + 150, 820);
 
     const buffer = canvas.toBuffer("image/png");
 
     const certificatePath = path.join(
       __dirname,
-      "public/certificate/generated.png"
+      "public/certificate/generated.png",
     );
 
     fs.writeFileSync(certificatePath, buffer);
@@ -393,7 +397,7 @@ app.get("/api/donors", async (req, res) => {
   });
 });
 
-app.post("/contact-message", (req,res)=>{
+app.post("/contact-message", (req, res) => {
   console.log("Form submitted:", req.body);
   res.send("Form working!");
 });
