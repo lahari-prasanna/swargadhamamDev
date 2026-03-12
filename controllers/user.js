@@ -231,9 +231,17 @@ module.exports.signup = async (req, res, next) => {
     res.redirect("/login");
 
     // Fire-and-forget: email sends after response is already on its way
-    sendVerificationEmail(email, token).catch((err) => {
-      console.error("Signup verification email failed:", err.message);
-    });
+
+    sendVerificationEmail(email, token)
+      .then(() =>
+        console.log("✅ Email sent successfully to:", email),
+      )
+      .catch((err) => {
+        console.error(
+          "Signup verification email failed:",
+          err.message,
+        );
+      });
   } catch (e) {
     req.flash("error", e.message);
     res.redirect("/signup");
