@@ -257,19 +257,6 @@ router.post(
       timeZone: "Asia/Kolkata",
     });
 
-    router.get(
-      "/test-email",
-      wrapAsync(async (req, res) => {
-        await transporter.sendMail({
-          from: `"Test" <${process.env.EMAIL}>`,
-          to: process.env.EMAIL, // send to yourself
-          subject: "Test email from Render " + Date.now(),
-          html: "<p>Test email working!</p>",
-        });
-        res.send("Email sent! Check inbox.");
-      }),
-    );
-
     transporter
       .sendMail({
         to: email,
@@ -306,6 +293,19 @@ router.post(
           err.message,
         );
       });
+  }),
+);
+
+router.get(
+  "/test-email",
+  wrapAsync(async (req, res) => {
+    await transporter.sendMail({
+      from: `"Test" <${process.env.EMAIL}>`,
+      to: process.env.EMAIL, // send to yourself
+      subject: "Test email from Render " + Date.now(),
+      html: "<p>Test email working!</p>",
+    });
+    res.send("Email sent! Check inbox.");
   }),
 );
 
